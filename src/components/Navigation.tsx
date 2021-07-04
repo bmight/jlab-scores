@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useRealm } from '../hooks/useRealm'
 
-const Main: React.FC = () => {
+const Navigation: React.FC = () => {
 	const { login, logout, currentUser } = useRealm()
 	const [email, setEmail] = useState<string | undefined>()
 	const [password, setPassword] = useState<string | undefined>()
@@ -51,4 +51,4 @@ const Main: React.FC = () => {
 	)
 }
 
-export default Main
+export default Navigation

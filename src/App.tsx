@@ -1,12 +1,14 @@
 import './App.css';
-import {RealmProvider} from './hooks/useRealm'
-import Main from './components/Main'
+import { RealmProvider } from './hooks/useRealm'
+import Navigation from './components/Navigation'
+import Router from './Router';
 
 function App() {
   return (
     <div className="App">
       <RealmProvider appId='jlab_2021-aurej'>
-        <Main />
+        <Navigation />
+        <Router />
       </RealmProvider>
     </div>
   );
