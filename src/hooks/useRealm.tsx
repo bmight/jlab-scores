@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as Realm from "realm-web";
+import {  ApolloProvider, ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 
 interface RealmAppContextState  {
   realm: Realm.App
@@ -41,9 +42,48 @@ const RealmProvider: React.FC<RealmAppProviderProps> = (props) => {
 
 	return (
 		<RealmAppContext.Provider value={wrapped}>
-			{children}
+			<RealmApolloProvider appId={appId} realm={app}>
+				{children}
+			</RealmApolloProvider>
 		</RealmAppContext.Provider>
 	);
+}
+
+interface RealmApolloProviderProps {
+	appId: String
+	realm: Realm.App
+}
+
+const RealmApolloProvider: React.FC<RealmApolloProviderProps> = (props) => {
+	const { appId, realm, children } = props
+
+	const client = new ApolloClient({
+		link: new HttpLink({
+			uri: `https://realm.mongodb.com/api/client/v2.0/app/${appId}/graphql`,
+			// We define a custom fetch handler for the Apollo client that lets us authenticate GraphQL requests.
+			// The function intercepts every Apollo HTTP request and adds an Authorization header with a valid
+			// access token before sending the request.
+			fetch: async (uri, options) => {
+				if(realm.currentUser && options) {
+					console.log(realm.currentUser.accessToken)
+					await realm.currentUser.refreshCustomData();
+					const headers: HeadersInit = {
+						'Authorization': `Bearer ${realm.currentUser.accessToken}`
+					}
+					options.headers = headers
+				}
+				console.log({ options })
+				return fetch(uri, options);
+			},
+		}),
+		cache: new InMemoryCache()
+	});
+
+	return (
+		<ApolloProvider client={client}>
+			{children}
+		</ApolloProvider>
+	)
 }
 
 const useRealm = () => {
