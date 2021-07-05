@@ -65,14 +65,12 @@ const RealmApolloProvider: React.FC<RealmApolloProviderProps> = (props) => {
 			// access token before sending the request.
 			fetch: async (uri, options) => {
 				if(realm.currentUser && options) {
-					console.log(realm.currentUser.accessToken)
 					await realm.currentUser.refreshCustomData();
 					const headers: HeadersInit = {
 						'Authorization': `Bearer ${realm.currentUser.accessToken}`
 					}
 					options.headers = headers
 				}
-				console.log({ options })
 				return fetch(uri, options);
 			},
 		}),
