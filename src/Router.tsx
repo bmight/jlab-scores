@@ -7,8 +7,11 @@ import {
 const Router: React.FC = (props) => {
   return (
     <Switch>
-      <Route path="/">
+      <Route exact path="/">
         Main Route
+      </Route>
+      <Route exact path="/:session">
+        Session Page
       </Route>
     </Switch>
   )

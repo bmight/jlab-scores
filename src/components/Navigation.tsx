@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useRealm } from '../hooks/useRealm'
+import SessionSelector from './SessionSelector'
 
 const Navigation: React.FC = () => {
 	const { login, logout, currentUser } = useRealm()
@@ -47,6 +48,8 @@ const Navigation: React.FC = () => {
 					<button onClick={handleLogin}>Login</button>
 				</>
 			}
+			<br />
+			<SessionSelector />
 		</div>
 	)
 }
