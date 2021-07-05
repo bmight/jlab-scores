@@ -3,6 +3,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import Teams from './components/Teams'
 
 const Router: React.FC = (props) => {
   return (
@@ -11,7 +12,7 @@ const Router: React.FC = (props) => {
         Main Route
       </Route>
       <Route exact path="/:session">
-        Session Page
+        <Teams />
       </Route>
     </Switch>
   )

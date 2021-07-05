@@ -1,0 +1,10 @@
+query SessionById ($id: ObjectId) {
+  session (query: {_id: $id}) {
+    _id
+    name
+    teams {
+      school
+      score
+    }
+  }
+}

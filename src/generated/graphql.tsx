@@ -65,8 +65,8 @@ export type MutationReplaceOneSessionArgs = {
 
 
 export type MutationUpdateManySessionsArgs = {
-  set: SessionUpdateInput;
   query?: Maybe<SessionQueryInput>;
+  set: SessionUpdateInput;
 };
 
 
@@ -95,9 +95,9 @@ export type QuerySessionArgs = {
 
 
 export type QuerySessionsArgs = {
+  query?: Maybe<SessionQueryInput>;
   limit?: Maybe<Scalars['Int']>;
   sortBy?: Maybe<SessionSortByInput>;
-  query?: Maybe<SessionQueryInput>;
 };
 
 export type Session = {
@@ -108,43 +108,43 @@ export type Session = {
 };
 
 export type SessionInsertInput = {
+  teams?: Maybe<Array<Maybe<SessionTeamInsertInput>>>;
   _id?: Maybe<Scalars['ObjectId']>;
   name?: Maybe<Scalars['String']>;
-  teams?: Maybe<Array<Maybe<SessionTeamInsertInput>>>;
 };
 
 export type SessionQueryInput = {
-  OR?: Maybe<Array<SessionQueryInput>>;
-  _id_gt?: Maybe<Scalars['ObjectId']>;
-  name_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
-  _id?: Maybe<Scalars['ObjectId']>;
-  name_exists?: Maybe<Scalars['Boolean']>;
-  name?: Maybe<Scalars['String']>;
   name_gt?: Maybe<Scalars['String']>;
-  teams_in?: Maybe<Array<Maybe<SessionTeamQueryInput>>>;
-  _id_in?: Maybe<Array<Maybe<Scalars['ObjectId']>>>;
-  _id_lte?: Maybe<Scalars['ObjectId']>;
-  name_lte?: Maybe<Scalars['String']>;
-  teams?: Maybe<Array<Maybe<SessionTeamQueryInput>>>;
-  _id_exists?: Maybe<Scalars['Boolean']>;
-  name_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  teams_exists?: Maybe<Scalars['Boolean']>;
-  name_gte?: Maybe<Scalars['String']>;
-  _id_lt?: Maybe<Scalars['ObjectId']>;
-  _id_gte?: Maybe<Scalars['ObjectId']>;
-  teams_nin?: Maybe<Array<Maybe<SessionTeamQueryInput>>>;
-  AND?: Maybe<Array<SessionQueryInput>>;
   name_lt?: Maybe<Scalars['String']>;
-  name_ne?: Maybe<Scalars['String']>;
+  _id_lt?: Maybe<Scalars['ObjectId']>;
+  OR?: Maybe<Array<SessionQueryInput>>;
+  _id_gte?: Maybe<Scalars['ObjectId']>;
   _id_nin?: Maybe<Array<Maybe<Scalars['ObjectId']>>>;
+  AND?: Maybe<Array<SessionQueryInput>>;
+  teams_in?: Maybe<Array<Maybe<SessionTeamQueryInput>>>;
+  _id_gt?: Maybe<Scalars['ObjectId']>;
+  teams_nin?: Maybe<Array<Maybe<SessionTeamQueryInput>>>;
+  _id?: Maybe<Scalars['ObjectId']>;
+  _id_lte?: Maybe<Scalars['ObjectId']>;
+  _id_exists?: Maybe<Scalars['Boolean']>;
   _id_ne?: Maybe<Scalars['ObjectId']>;
+  name_gte?: Maybe<Scalars['String']>;
+  teams?: Maybe<Array<Maybe<SessionTeamQueryInput>>>;
+  name_exists?: Maybe<Scalars['Boolean']>;
+  name_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_ne?: Maybe<Scalars['String']>;
+  _id_in?: Maybe<Array<Maybe<Scalars['ObjectId']>>>;
+  name_lte?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  teams_exists?: Maybe<Scalars['Boolean']>;
 };
 
 export enum SessionSortByInput {
+  NameDesc = 'NAME_DESC',
   IdAsc = '_ID_ASC',
   IdDesc = '_ID_DESC',
-  NameAsc = 'NAME_ASC',
-  NameDesc = 'NAME_DESC'
+  NameAsc = 'NAME_ASC'
 }
 
 export type SessionTeam = {
@@ -154,31 +154,31 @@ export type SessionTeam = {
 };
 
 export type SessionTeamInsertInput = {
-  score?: Maybe<Scalars['Int']>;
   school?: Maybe<Scalars['String']>;
+  score?: Maybe<Scalars['Int']>;
 };
 
 export type SessionTeamQueryInput = {
-  score_lte?: Maybe<Scalars['Int']>;
-  school_gte?: Maybe<Scalars['String']>;
-  school_lte?: Maybe<Scalars['String']>;
-  school_in?: Maybe<Array<Maybe<Scalars['String']>>>;
   OR?: Maybe<Array<SessionTeamQueryInput>>;
-  school_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
-  school_lt?: Maybe<Scalars['String']>;
-  score_gt?: Maybe<Scalars['Int']>;
+  school_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  score?: Maybe<Scalars['Int']>;
+  score_exists?: Maybe<Scalars['Boolean']>;
+  school_gt?: Maybe<Scalars['String']>;
   score_lt?: Maybe<Scalars['Int']>;
-  school_exists?: Maybe<Scalars['Boolean']>;
-  school_ne?: Maybe<Scalars['String']>;
+  school_gte?: Maybe<Scalars['String']>;
   AND?: Maybe<Array<SessionTeamQueryInput>>;
   score_in?: Maybe<Array<Maybe<Scalars['Int']>>>;
-  score_exists?: Maybe<Scalars['Boolean']>;
-  school?: Maybe<Scalars['String']>;
-  score_ne?: Maybe<Scalars['Int']>;
-  score_nin?: Maybe<Array<Maybe<Scalars['Int']>>>;
-  score?: Maybe<Scalars['Int']>;
+  school_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
+  score_lte?: Maybe<Scalars['Int']>;
+  school_exists?: Maybe<Scalars['Boolean']>;
   score_gte?: Maybe<Scalars['Int']>;
-  school_gt?: Maybe<Scalars['String']>;
+  score_ne?: Maybe<Scalars['Int']>;
+  score_gt?: Maybe<Scalars['Int']>;
+  school_lte?: Maybe<Scalars['String']>;
+  school_lt?: Maybe<Scalars['String']>;
+  score_nin?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  school?: Maybe<Scalars['String']>;
+  school_ne?: Maybe<Scalars['String']>;
 };
 
 export type SessionTeamUpdateInput = {
@@ -190,12 +190,12 @@ export type SessionTeamUpdateInput = {
 };
 
 export type SessionUpdateInput = {
+  teams?: Maybe<Array<Maybe<SessionTeamUpdateInput>>>;
   teams_unset?: Maybe<Scalars['Boolean']>;
   _id?: Maybe<Scalars['ObjectId']>;
   _id_unset?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   name_unset?: Maybe<Scalars['Boolean']>;
-  teams?: Maybe<Array<Maybe<SessionTeamUpdateInput>>>;
 };
 
 export type UpdateManyPayload = {
@@ -203,6 +203,23 @@ export type UpdateManyPayload = {
   matchedCount: Scalars['Int'];
   modifiedCount: Scalars['Int'];
 };
+
+export type SessionByIdQueryVariables = Exact<{
+  id?: Maybe<Scalars['ObjectId']>;
+}>;
+
+
+export type SessionByIdQuery = (
+  { __typename?: 'Query' }
+  & { session?: Maybe<(
+    { __typename?: 'Session' }
+    & Pick<Session, '_id' | 'name'>
+    & { teams?: Maybe<Array<Maybe<(
+      { __typename?: 'SessionTeam' }
+      & Pick<SessionTeam, 'school' | 'score'>
+    )>>> }
+  )> }
+);
 
 export type SessionSelectorQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -216,6 +233,46 @@ export type SessionSelectorQuery = (
 );
 
 
+export const SessionByIdDocument = gql`
+    query SessionById($id: ObjectId) {
+  session(query: {_id: $id}) {
+    _id
+    name
+    teams {
+      school
+      score
+    }
+  }
+}
+    `;
+
+/**
+ * __useSessionByIdQuery__
+ *
+ * To run a query within a React component, call `useSessionByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSessionByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSessionByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useSessionByIdQuery(baseOptions?: Apollo.QueryHookOptions<SessionByIdQuery, SessionByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SessionByIdQuery, SessionByIdQueryVariables>(SessionByIdDocument, options);
+      }
+export function useSessionByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SessionByIdQuery, SessionByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SessionByIdQuery, SessionByIdQueryVariables>(SessionByIdDocument, options);
+        }
+export type SessionByIdQueryHookResult = ReturnType<typeof useSessionByIdQuery>;
+export type SessionByIdLazyQueryHookResult = ReturnType<typeof useSessionByIdLazyQuery>;
+export type SessionByIdQueryResult = Apollo.QueryResult<SessionByIdQuery, SessionByIdQueryVariables>;
 export const SessionSelectorDocument = gql`
     query SessionSelector {
   sessions {
