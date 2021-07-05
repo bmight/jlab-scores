@@ -1,0 +1,6 @@
+query SessionSelector {
+  sessions {
+    _id
+    name
+  }
+}

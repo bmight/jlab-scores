@@ -1,18 +1,10 @@
 import React from 'react'
-import { useQuery } from "@apollo/client";
-import gql from "graphql-tag";
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { matchPath } from "react-router";
+import { useSessionSelectorQuery } from '../generated/graphql'
 
 interface SessionSelectorProps {
 
-}
-
-interface AllSessions {
-  sessions: Array<{
-    _id: string
-    name: string
-  }>
 }
 
 const SessionSelector: React.FC<SessionSelectorProps> = (props) => {
@@ -23,14 +15,7 @@ const SessionSelector: React.FC<SessionSelectorProps> = (props) => {
     strict: false
   });
   const history = useHistory()
-  const { data } = useQuery<AllSessions>(gql`
-    query AllSessions {
-      sessions {
-        _id
-        name
-      }
-    }
-  `);
+  const { data } = useSessionSelectorQuery();
   const session_id = match?.params.session
 
   const handleSessionChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
@@ -42,7 +27,11 @@ const SessionSelector: React.FC<SessionSelectorProps> = (props) => {
       <select value={session_id} onChange={handleSessionChange}>
         { data !== undefined
           ? data.sessions.map(session => {
-            return <option value={session._id}>{session.name}</option>
+            if(session !== null) {
+              return <option value={session._id}>{session.name}</option>
+            } else {
+              return null
+            }
           })
           : (
             <option>Loading...</option>

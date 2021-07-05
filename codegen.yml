@@ -1,0 +1,15 @@
+overwrite: true
+schema:
+  - "https://us-east-1.aws.realm.mongodb.com/api/client/v2.0/app/jlab_2021-aurej/graphql":
+      headers:
+        apiKey: JIL27sBjE1orkuQGJdO3rEmJc9BOJfGovQK9eArKDwdLXFSWx6QhuwwVKPy1rmxV
+documents: "src/**/*.graphql"
+generates:
+  src/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
