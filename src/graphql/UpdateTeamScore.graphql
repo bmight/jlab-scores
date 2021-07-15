@@ -1,0 +1,10 @@
+mutation UpdateTeamScore ($_id: String!, $index: Int!, $inc: Int, $set: Int) {
+  updateTeamScore(input: { _id: $_id, index: $index, inc: $inc, set: $set }) {
+    _id
+    name
+    teams {
+      school
+      score
+    }
+  }
+}
