@@ -1,6 +1,7 @@
 import React from 'react'
 import { SessionTeam } from '../../generated/graphql'
 import ScoreControls from './ScoreControls'
+import { Col } from 'reactstrap'
 
 interface TeamProps {
   index: number
@@ -11,11 +12,11 @@ interface TeamProps {
 const Team: React.FC<TeamProps> = (props) => {
   const { team, index, id } = props
   return (
-    <div>
-      <h3>{team.school}</h3>
-      <span>Score: {team.score}</span>
+    <Col className='text-center mx-4'>
+      <h1>{team.score}</h1>
+      <span>{team.school}</span>
       <ScoreControls id={id} index={index} />
-    </div>
+    </Col>
   )
 }
 

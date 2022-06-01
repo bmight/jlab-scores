@@ -1,0 +1,6 @@
+query AllTeams {
+  sessions {
+    _id
+    name
+  }
+}

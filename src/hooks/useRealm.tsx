@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Realm from "realm-web";
 import {  ApolloProvider, ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 
@@ -7,6 +7,10 @@ interface RealmAppContextState  {
   currentUser: Realm.User | null
   login: (email: string, password: string) => Promise<void>
   logout: () => Promise<void>
+}
+
+function getQueryParams() {
+  return new URLSearchParams(window.location.search);
 }
 
 const RealmAppContext = React.createContext<RealmAppContextState | undefined>(undefined);
@@ -18,9 +22,21 @@ interface RealmAppProviderProps {
 const RealmProvider: React.FC<RealmAppProviderProps> = (props) => {
   const { appId, children } = props
 	const [app, setApp] = React.useState<Realm.App>(new Realm.App(appId));
+	const query = getQueryParams()
+	const key = query.get('apiKey')
 	React.useEffect(() => {
 		setApp(new Realm.App(appId));
 	}, [appId]);
+
+	useEffect(() => {
+		const loginToken = async () => {
+			if(key) {
+				const credentials = Realm.Credentials.apiKey(key)
+				await app.logIn(credentials);
+			}
+		}
+		loginToken()
+	}, [key, app])
 
 	// Wrap the Realm.App object's user state with React state
 	const [currentUser, setCurrentUser] = useState<Realm.User | null>(app.currentUser);

@@ -3,6 +3,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import { useSessionByIdQuery } from '../generated/graphql'
 import Team from './Team'
 import useInterval from '../hooks/useInterval'
+import { Row } from 'reactstrap'
 
 interface TeamsProps {
 
@@ -31,7 +32,7 @@ const Teams: React.FC<TeamsProps> = (props) => {
   }
 
   return (
-    <>
+    <Row>
       {teams.map((team, index) => {
         if(team !== null) {
           return <Team id={id} team={team} index={index} />
@@ -39,7 +40,7 @@ const Teams: React.FC<TeamsProps> = (props) => {
           return null
         }
       })}
-    </>
+    </Row>
   )
 }
 
